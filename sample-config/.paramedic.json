@@ -1,0 +1,28 @@
+{
+    "cordova": "../cordova/bin/cordova",
+    "plugins": [
+        "https://github.com/apache/cordova-plugin-geolocation"
+    ],
+    "targets": [
+        {
+            "platform": "windows",
+            "action": "prepare",
+            "args": "--browserify"
+        },
+        {
+            "platform": "ios",
+            "action": "run",
+            "args": "--device"
+        },
+        {
+            "platform": "android@5.0",
+            "action": "run",
+            "args": "--target='device1'"
+        },
+        {
+            "platform": "android@4.1.1",
+            "action": "run",
+            "args": "--target='device2'"
+        }
+    ]
+}
