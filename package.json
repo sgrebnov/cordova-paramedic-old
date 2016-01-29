@@ -11,15 +11,14 @@
     "url": "git://github.com/purplecabbage/cordova-paramedic.git"
   },
   "scripts": {
-    "test":"npm run jshint & npm run test-ios",
-    "jshint":"node node_modules/jshint/bin/jshint *.js",
-    "test-appveyor":"npm run test-windows",
-    "test-travis":"npm run test-ios",
-    "test-android":"node main.js --platform android --plugin ./spec/testable-plugin/",
+    "test": "npm run jshint & npm run test-ios",
+    "jshint": "node node_modules/jshint/bin/jshint *.js",
+    "test-appveyor": "npm run test-windows",
+    "test-travis": "npm run test-ios",
+    "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
     "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
-    "test-windows" : "node main.js --platform windows --plugin ./spec/testable-plugin/",
+    "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
     "test-wp8": "node main.js --platform wp8 --plugin ./spec/testable-plugin/"
-
   },
   "keywords": [
     "cordova",
@@ -29,6 +28,7 @@
   "author": "Jesse MacFadyen",
   "license": "Apache 2.0",
   "dependencies": {
+    "cordova-common": "^1.0.0",
     "localtunnel": "~1.5.0",
     "minimist": "~1.1.0",
     "request": "^2.53.0",
@@ -36,7 +36,7 @@
     "tmp": "0.0.25"
   },
   "devDependencies": {
-        "jasmine-node": "~1",
-        "jshint": "^2.6.0"
+    "jasmine-node": "~1",
+    "jshint": "^2.6.0"
   }
 }
