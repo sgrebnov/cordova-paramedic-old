@@ -12,8 +12,8 @@ var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --port PORTNUM --browserify]\n" +
     "`PLATFORM` : the platform id, currently only supports 'ios'\n" +
     "`PATH` : the relative or absolute path to a plugin folder\n" +
-                    "\texpected to have a 'tests' folder.\n" +  
-                    "\tYou may specify multiple --plugin flags and they will all\n" + 
+                    "\texpected to have a 'tests' folder.\n" +
+                    "\tYou may specify multiple --plugin flags and they will all\n" +
                     "\tbe installed and tested together.\n" +
     "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
               "\t(defaults to 10 minutes) \n" +
@@ -34,15 +34,11 @@ if(!argv.platform && !useParamedicConfig) {
     process.exit(1);
 }
 
-var onComplete = function(resCode,resObj,logStr) {
-    console.log("result code is : " + resCode);
-    if(resObj) {
-        console.log(JSON.stringify(resObj));
-    }
-    if(logStr) {
-        console.log(logStr);
-    }
-    process.exit(resCode);
-};
-
-paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, onComplete, argv.justbuild, argv.port, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath);
+paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, null, argv.justbuild, argv.port, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath)
+.catch(function (error) {
+    console.log(JSON.stringify(error));
+    process.exit(1);
+})
+.done(function (result) {
+    console.log(JSON.stringify(result));
+});
