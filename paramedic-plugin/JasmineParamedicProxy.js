@@ -27,7 +27,31 @@ JasmineParamedicProxy.prototype.suiteDone = function (o) {
 };
 
 JasmineParamedicProxy.prototype.jasmineDone = function (o) {
+    console.log('!!!!!!!!!jasmineDone');
+    var p = 'Desktop';
+    var devmodel='none';
+    var version = cordova.version;
+    if(typeof device != 'undefined') {
+        p = device.platform.toLowerCase();
+        devmodel=device.model || device.name;
+        version = device.version.toLowerCase();
+    }
+
+    o = o || {};
+
+    // include platform info
+    o.cordova = {
+        platform:(platformMap.hasOwnProperty(p) ? platformMap[p] : p),
+        version:version,
+        model:devmodel
+    }
+
     this.socket.emit('jasmineDone', o);
+};
+
+var platformMap = {
+    'ipod touch':'ios',
+    'iphone':'ios'
 };
 
 module.exports = JasmineParamedicProxy;
