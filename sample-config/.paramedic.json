@@ -2,11 +2,16 @@
     "cordova": "../cordova/bin/cordova",
     "plugins": [
         "cordova-plugin-geolocation",
-        "cordova-plugin-file"
+        "cordova-plugin-file",
+        "cordova-plugin-file-transfer"
     ],
     "targets": [
         {
-            "platform": "windows",
+            "platform": "ios",
+            "action": "run"
+        },
+        {
+            "platform": "ios",
             "action": "run"
         }
     ]
