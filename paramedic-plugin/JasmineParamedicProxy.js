@@ -27,7 +27,6 @@ JasmineParamedicProxy.prototype.suiteDone = function (o) {
 };
 
 JasmineParamedicProxy.prototype.jasmineDone = function (o) {
-    console.log('!!!!!!!!!jasmineDone');
     var p = 'Desktop';
     var devmodel='none';
     var version = cordova.version;
