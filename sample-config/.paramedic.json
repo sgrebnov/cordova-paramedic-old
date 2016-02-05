@@ -1,5 +1,5 @@
 {
-    "cordova": "../cordova/bin/cordova",
+    "externalServerUrl": "http://10.0.8.254",
     "plugins": [
         "cordova-plugin-geolocation",
         "cordova-plugin-file"
@@ -7,7 +7,8 @@
     "targets": [
         {
             "platform": "ios",
-            "action": "run"
+            "action": "run",
+             "args": "--device"
         }
     ]
 }

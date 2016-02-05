@@ -58,11 +58,11 @@ function loadParamedicServerUrl() {
     try {
         // attempt to synchronously load medic config
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "../paramedic.json", false);
+        xhr.open("GET", "../medic.json", false);
         xhr.send(null);
         var cfg = JSON.parse(xhr.responseText);
 
-        return cfg.serverUrl || PARAMEDIC_SERVER_DEFAULT_URL;
+        return cfg.logurl || PARAMEDIC_SERVER_DEFAULT_URL;
 
     } catch (ex) {}
 
