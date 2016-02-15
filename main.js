@@ -9,7 +9,7 @@ var plugins,
     platformId;
 
 var USAGE = "Error missing args. \n" +
-    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --port PORTNUM --browserify]\n" +
+    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
     "`PLATFORM` : the platform id, currently only supports 'ios'\n" +
     "`PATH` : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
@@ -17,7 +17,7 @@ var USAGE = "Error missing args. \n" +
                     "\tbe installed and tested together.\n" +
     "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
               "\t(defaults to 10 minutes) \n" +
-    "`PORTNUM` : (optional) port to use for posting results from emulator back to paramedic server\n" +
+    "`PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server(default is from 8008 to 8009)\n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
@@ -34,7 +34,7 @@ if(!argv.platform && !useParamedicConfig) {
     process.exit(1);
 }
 
-paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, null, argv.justbuild, argv.port, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath)
+paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, null, argv.justbuild, argv.startport, argv.endport, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath)
 .catch(function (error) {
     console.log(JSON.stringify(error));
     process.exit(1);
