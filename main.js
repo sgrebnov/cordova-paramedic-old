@@ -26,7 +26,7 @@ var USAGE = "Error missing args. \n" +
 var argv = parseArgs(process.argv.slice(2));
 
 // .paramedic.json represents special configuration file
-var paramedicConfig = path.resolve('.paramedic.json');
+var paramedicConfig = path.resolve('.paramedic.config.js');
 var useParamedicConfig = process.argv.length === 2 && fs.existsSync(paramedicConfig);
 
 if(!argv.platform && !useParamedicConfig) {
