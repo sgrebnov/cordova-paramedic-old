@@ -1,4 +1,4 @@
-{
+module.exports = {
     "externalServerUrl": "http://10.0.8.254",
     "plugins": [
         "https://github.com/apache/cordova-plugin-inappbrowser"
@@ -14,22 +14,19 @@
             "action": "run",
              "args": "--device"
         },
-        {
+        {    // Windows 8.1 Desktop(anycpu)
             "platform": "windows@https://github.com/apache/cordova-windows.git",
-            "action": "run",
-            "notes": "Windows8.1 Desktop(anycpu)"
+            "action": "run"
         },
-        {
+        {   // Windows 10 Desktop(x64)
             "platform": "windows@https://github.com/apache/cordova-windows.git",
             "action": "run",
-            "args": "--archs=x64 -- --appx=uap",
-            "notes": "Windows10 Desktop(x64)"
+            "args": "--archs=x64 -- --appx=uap"
         },
-        {
+        {    // WP 8.1 Device(arm)
             "platform": "windows@https://github.com/apache/cordova-windows.git",
             "action": "run",
-            "args": "--archs=arm --device -- --phone",
-            "notes": "WP 8.1 Device(arm)"
+            "args": "--archs=arm --device -- --phone"
         }
     ]
 }
