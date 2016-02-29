@@ -8,7 +8,11 @@ var parseArgs = require('minimist'),
 
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
-    "`PLATFORM` : the platform id, currently only supports 'ios'\n" +
+    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
+                    "\tPath to platform can be specified as link to git repo like:\n" + 
+                    "\twindows@https://github.com/apache/cordova-windows.git\n" +
+                    "\tor path to local copied git repo like:\n" + 
+                    "\twindows@../cordova-windows/\n" +
     "`PATH` : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
                     "\tYou may specify multiple --plugin flags and they will all\n" +
