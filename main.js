@@ -5,9 +5,6 @@ var parseArgs = require('minimist'),
     path = require('path'),
     paramedic = require('./lib/paramedic');
 
-var plugins,
-    platformId;
-
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
     "`PLATFORM` : the platform id, currently only supports 'ios'\n" +
