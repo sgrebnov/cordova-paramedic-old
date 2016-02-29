@@ -3,7 +3,8 @@
 var parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
-    paramedic = require('./lib/paramedic');
+    paramedic = require('./lib/paramedic'),
+    DEFAULT_CONFIG_PATH = '.paramedic.config.js';
 
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
@@ -21,10 +22,9 @@ var USAGE = "Error missing args. \n" +
     "--platformPath : (optional) path to install platform from, git or local file uri";
 
 var argv = parseArgs(process.argv.slice(2));
-
 // .paramedic.json represents special configuration file
-var paramedicConfig = path.resolve('.paramedic.config.js');
-var useParamedicConfig = process.argv.length === 2 && fs.existsSync(paramedicConfig);
+var paramedicConfig = path.resolve(argv.config || DEFAULT_CONFIG_PATH);
+var useParamedicConfig = fs.existsSync(paramedicConfig);
 
 if(!argv.platform && !useParamedicConfig) {
     console.log(USAGE);
