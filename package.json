@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "npm run jshint & npm run test-ios",
-    "jshint": "node node_modules/jshint/bin/jshint *.js",
+    "jshint": "node node_modules/jshint/bin/jshint lib/",
     "test-appveyor": "npm run test-windows",
     "test-travis": "npm run test-ios",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
