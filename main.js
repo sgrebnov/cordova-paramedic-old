@@ -4,7 +4,8 @@ var parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
     paramedic = require('./lib/paramedic'),
-    DEFAULT_CONFIG_PATH = '.paramedic.config.js';
+    ParamedicConfig = require('./lib/ParamedicConfig'); 
+    
 
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
@@ -23,23 +24,23 @@ var USAGE = "Error missing args. \n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--platformPath : (optional) path to install platform from, git or local file uri";
+    "--tunnel: use tunneling instead of local address. default is false";
 
 var argv = parseArgs(process.argv.slice(2));
-// .paramedic.json represents special configuration file
-var paramedicConfig = path.resolve(argv.config || DEFAULT_CONFIG_PATH);
-var useParamedicConfig = fs.existsSync(paramedicConfig);
+var pathToParamedicConfig = argv.config && path.resolve(argv.config);
 
-if(!argv.platform && !useParamedicConfig) {
+if(!argv.platform && !pathToParamedicConfig) {
     console.log(USAGE);
     process.exit(1);
 }
 
-paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, null, argv.justbuild, argv.startport, argv.endport, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath)
-.catch(function (error) {
-    console.log(JSON.stringify(error));
-    process.exit(1);
-})
-.done(function (result) {
-    console.log(JSON.stringify(result));
-});
+var paramedicConfig = new ParamedicConfig(pathToParamedicConfig || argv);
+
+paramedic.run(paramedicConfig)
+    .catch(function (error) {
+        console.log(JSON.stringify(error));
+        process.exit(1);
+    })
+    .done(function (result) {
+        console.log(JSON.stringify(result));
+    });

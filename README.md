@@ -29,6 +29,7 @@ cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS
 --justbuild : (optional) just builds the project, without running the tests 
 --browserify : (optional) plugins are browserified into cordova.js 
 --verbose : (optional) verbose mode. Display more information output
+--tunnel: use tunneling instead of local address. default is false
 
 ```
 
