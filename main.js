@@ -3,11 +3,17 @@
 var parseArgs = require('minimist'),
     fs = require('fs'),
     path = require('path'),
-    paramedic = require('./lib/paramedic');
+    paramedic = require('./lib/paramedic'),
+    ParamedicConfig = require('./lib/ParamedicConfig'); 
+    
 
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
-    "`PLATFORM` : the platform id, currently only supports 'ios'\n" +
+    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
+                    "\tPath to platform can be specified as link to git repo like:\n" + 
+                    "\twindows@https://github.com/apache/cordova-windows.git\n" +
+                    "\tor path to local copied git repo like:\n" + 
+                    "\twindows@../cordova-windows/\n" +
     "`PATH` : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
                     "\tYou may specify multiple --plugin flags and they will all\n" +
@@ -18,24 +24,23 @@ var USAGE = "Error missing args. \n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--platformPath : (optional) path to install platform from, git or local file uri";
+    "--tunnel: use tunneling instead of local address. default is false";
 
 var argv = parseArgs(process.argv.slice(2));
+var pathToParamedicConfig = argv.config && path.resolve(argv.config);
 
-// .paramedic.json represents special configuration file
-var paramedicConfig = path.resolve('.paramedic.config.js');
-var useParamedicConfig = process.argv.length === 2 && fs.existsSync(paramedicConfig);
-
-if(!argv.platform && !useParamedicConfig) {
+if(!argv.platform && !pathToParamedicConfig) {
     console.log(USAGE);
     process.exit(1);
 }
 
-paramedic.run(useParamedicConfig ? paramedicConfig : null, argv.platform, argv.plugin, null, argv.justbuild, argv.startport, argv.endport, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath)
-.catch(function (error) {
-    console.log(JSON.stringify(error));
-    process.exit(1);
-})
-.done(function (result) {
-    console.log(JSON.stringify(result));
-});
+var paramedicConfig = new ParamedicConfig(pathToParamedicConfig || argv);
+
+paramedic.run(paramedicConfig)
+    .catch(function (error) {
+        console.log(JSON.stringify(error));
+        process.exit(1);
+    })
+    .done(function (result) {
+        console.log(JSON.stringify(result));
+    });
