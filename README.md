@@ -64,7 +64,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuil
 Tests must be run on connected device instead of emulator.
 
 ```
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --devicetu
+cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --device
 ```
 
 ####--externalServerUrl (optional)
