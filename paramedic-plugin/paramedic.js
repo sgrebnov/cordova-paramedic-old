@@ -7,11 +7,13 @@ function Paramedic() {
 }
 
 Paramedic.prototype.initialize = function() {
+    var me = this;
     var connectionUri = loadParamedicServerUrl();
     this.socket = io.connect(connectionUri);
 
     this.socket.on('connect', function () {
         console.log("Paramedic has been susccessfully connected to server");
+        if (typeof device != 'undefined') me.socket.emit('deviceInfo', device);
     });
 
     this.overrideConsole();
