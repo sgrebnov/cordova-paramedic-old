@@ -22,7 +22,7 @@ var USAGE = "Error missing args. \n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--tunnel: use tunneling instead of local address. default is false";
+    "--useTunnel : use tunneling instead of local address. default is false";
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
