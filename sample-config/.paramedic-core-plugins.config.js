@@ -1,5 +1,6 @@
 module.exports = {
-    "externalServerUrl": "http://10.0.8.254",
+    //"externalServerUrl": "http://10.0.8.254",
+    "useTunnel": true,
     "plugins": [
         "https://github.com/apache/cordova-plugin-battery-status",
         "https://github.com/apache/cordova-plugin-camera",
