@@ -8,9 +8,9 @@ var parseArgs = require('minimist'),
 var USAGE = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
     "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
-                    "\tPath to platform can be specified as link to git repo like:\n" + 
+                    "\tPath to platform can be specified as link to git repo like:\n" +
                     "\twindows@https://github.com/apache/cordova-windows.git\n" +
-                    "\tor path to local copied git repo like:\n" + 
+                    "\tor path to local copied git repo like:\n" +
                     "\twindows@../cordova-windows/\n" +
     "`PATH` : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
@@ -22,7 +22,8 @@ var USAGE = "Error missing args. \n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--useTunnel : use tunneling instead of local address. default is false";
+    "--useTunnel : use tunneling instead of local address. default is false\n" +
+    "--savePath: (optional) path to save Junit results file."
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
