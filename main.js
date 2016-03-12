@@ -23,7 +23,8 @@ var USAGE = "Error missing args. \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--useTunnel : use tunneling instead of local address. default is false\n" +
-    "--savePath: (optional) path to save Junit results file."
+    "--reportSavePath: (optional) path to save Junit results file\n" +
+    "--cleanUpAfterRun: (optional) cleans up the application after the run."
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
